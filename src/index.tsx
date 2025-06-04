@@ -1,4 +1,11 @@
-interface UnsplashPhoto {
+// Export interfaces for TypeScript users
+export interface GrabPicOptions {
+  count?: number
+  orientation?: "landscape" | "portrait" | "squarish"
+  size?: "raw" | "full" | "regular" | "small" | "thumb"
+}
+
+export interface UnsplashPhoto {
   id: string
   urls: {
     raw: string
@@ -11,7 +18,7 @@ interface UnsplashPhoto {
   description: string | null
 }
 
-interface UnsplashResponse {
+export interface UnsplashResponse {
   results: UnsplashPhoto[]
   total: number
   total_pages: number
@@ -58,11 +65,7 @@ export class GrabPictureResult {
 export async function grabPic(
   query: string,
   accessKey: string,
-  options: {
-    count?: number
-    orientation?: "landscape" | "portrait" | "squarish"
-    size?: "raw" | "full" | "regular" | "small" | "thumb"
-  } = {},
+  options: GrabPicOptions = {},
 ): Promise<GrabPictureResult> {
   const { count = 5, orientation, size = "regular" } = options
 
@@ -118,5 +121,5 @@ export async function grabPic(
   }
 }
 
-// Default export for convenience
+// Default export - this is crucial for auto-suggestions
 export default grabPic
