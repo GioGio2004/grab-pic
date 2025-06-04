@@ -1,0 +1,27 @@
+Package Development Notes:
+
+1. Build the package:
+   npm run build
+
+2. Test locally:
+   npm link
+   # In your test project:
+   npm link grab-picture
+
+3. Publish to NPM:
+   npm publish
+
+4. Usage in projects:
+   npm install grab-picture
+
+Key Features:
+- TypeScript support
+- Simple API with method chaining
+- Error handling
+- Configurable options
+- Works with Next.js API routes
+- Lightweight with minimal dependencies
+
+Environment Setup:
+- Get Unsplash Access Key from https://unsplash.com/developers
+- Add to .env as UNSPLASH_ACCESS_KEY

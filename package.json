@@ -1,0 +1,63 @@
+{
+  "name": "grab-picture",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "nextjs",
+    "",
+    "",
+    "",
+    "typescript",
+    "react",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "author": "Giorgi khvichia",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GioGio2004/grab-picture.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GioGio2004/grab-picture/issues"
+  },
+  "homepage": "https://github.com/GioGio2004/grab-picture#readme",
+  "dependencies": {
+    "uuid": "^11.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.0.10",
+    "@types/uuid": "^10.0.0",
+    "rimraf": "^5.0.10",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
