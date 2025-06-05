@@ -69,16 +69,15 @@ Returns a `GrabPictureResult` object with the following methods:
 
 ### Basic Usage
 
-javascript
+```javascript
 // Simple search - query first, API key second
 const pics = await grabPic("mountain landscape", YOUR_ACCESS_KEY);
 console.log(pics.one()); // First image URL
-
+```
 
 ### With Options
 
-typescript
-
+```typescript
 // Advanced search with options
 const pics = await grabPic("dogs", YOUR_ACCESS_KEY, {
   count: 10,
@@ -87,12 +86,11 @@ const pics = await grabPic("dogs", YOUR_ACCESS_KEY, {
 });
 
 console.log(pics.all()); // Array of 10 landscape dog images
-
+```
 
 ### Next.js Example
 
-typescript
-
+```typescript
 // app/api/random-image/route.ts
 import { grabPic } from "grab-picture";
 
@@ -104,12 +102,11 @@ export async function GET() {
     return Response.json({ error: "Failed to fetch image" }, { status: 500 });
   }
 }
-
+```
 
 ### Error Handling
 
-typescript
-
+```typescript
 try {
   const pics = await grabPic("cats", YOUR_ACCESS_KEY);
   console.log(pics.all());
@@ -122,7 +119,7 @@ try {
     console.error("Failed to fetch images:", error.message);
   }
 }
-
+```
 
 ## Getting Your Unsplash Access Key
 
@@ -133,9 +130,10 @@ try {
 
 ## Environment Variables
 
-
+```bash
 # .env.local
 UNSPLASH_ACCESS_KEY=your_access_key_here
+```
 
 ## License
 
