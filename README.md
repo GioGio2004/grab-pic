@@ -1,77 +1,57 @@
 # grab-picture
 
-A simple and lightweight wrapper for the Unsplash API that makes grabbing pictures effortless.
+The simplest way to fetch beautiful images from Unsplash in your JavaScript/TypeScript projects.
+GrabPicture makes image searching incredibly easy with a clean, intuitive API. Get high-quality images with just one line of code!
 
 ## Installation
 
-\`\`\`bash
+```bash
 npm install grab-picture
-\`\`\`
+```
 
 ## Quick Start
 
-\`\`\`typescript
-import { grabPic } from 'grab-picture';
+### 1. Get Your Unsplash Access Key
 
-// Basic usage - query first, API key second
-const pictures = await grabPic("cats and dogs", process.env.UNSPLASH_ACCESS_KEY);
+1. Go to [Unsplash Developers](https://unsplash.com/developers)
+2. Create a new application
+3. Copy your Access Key
 
-// Access individual images
-const firstImage = pictures.one();
-const secondImage = pictures.two();
-const randomImage = pictures.random();
-const allImages = pictures.all();
-\`\`\`
+### 2. Basic Usage
 
-## Usage in Next.js API Route
+```javascript
+import grabPic from 'grab-picture';
 
-\`\`\`typescript
-// app/api/images/route.ts
-import { NextRequest, NextResponse } from "next/server";
-import { grabPic } from "grab-picture";
+// Simple image search
+const result = await grabPic('mountains', 'YOUR_UNSPLASH_ACCESS_KEY');
 
-export async function GET(req: NextRequest) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const query = searchParams.get('q') || 'nature';
-    
-    const data = await grabPic(query, process.env.UNSPLASH_ACCESS_KEY!);
-    
-    return NextResponse.json({
-      success: true,
-      images: {
-        first: data.one(),
-        second: data.two(),
-        third: data.three(),
-        fourth: data.four(),
-        fifth: data.five(),
-        all: data.all(),
-        random: data.random()
-      }
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
-    );
-  }
-}
-\`\`\`
+// Get the first image
+const imageUrl = result.one();
+console.log(imageUrl);
+```
+
+That's it! You now have a beautiful mountain image URL ready to use.
 
 ## API Reference
 
-### `grabPic(query, apiKey, options?)`
-
-Fetches images from Unsplash based on your search query.
+```javascript
+grabPic(query, accessKey, options?)
+```
 
 #### Parameters
 
-1. `query` (string): Search term for images - **FIRST PARAMETER**
-2. `apiKey` (string): Your Unsplash access key - **SECOND PARAMETER**  
-3. `options` (object, optional): Configuration options
-   - `count` (number): Number of images to fetch (1-30, default: 5)
-   - `orientation` ('landscape' | 'portrait' | 'squarish'): Image orientation
-   - `size` ('raw' | 'full' | 'regular' | 'small' | 'thumb'): Image size (default: 'regular')
+| Parameter | Type    | Required | Description                  |
+|-----------|---------|----------|------------------------------|
+| `query`   |`string` |    ✅    | Search term for images       |
+|`accessKey`|`string` |    ✅    | Your Unsplash API access key |
+
+#### Options
+
+| Option        | Type     | Default       | Description                                                      |
+|---------------|----------|---------------|------------------------------------------------------------------|
+| `count`       | `number` | `5`           | Number of images to fetch (1-30)                                 |
+| `orientation` | `string` | `"landscape"` | Image orientation: `"landscape"`, `"portrait"`, `"squarish"`     |
+| `size`        | `string` | `"regular"`   | Image size: `"raw"`, `"full"`, `"regular"`, `"small"`, `"thumb"` |
 
 #### Returns
 
@@ -89,15 +69,16 @@ Returns a `GrabPictureResult` object with the following methods:
 
 ### Basic Usage
 
-\`\`\`typescript
+javascript
 // Simple search - query first, API key second
 const pics = await grabPic("mountain landscape", YOUR_ACCESS_KEY);
 console.log(pics.one()); // First image URL
-\`\`\`
+
 
 ### With Options
 
-\`\`\`typescript
+typescript
+
 // Advanced search with options
 const pics = await grabPic("dogs", YOUR_ACCESS_KEY, {
   count: 10,
@@ -106,11 +87,12 @@ const pics = await grabPic("dogs", YOUR_ACCESS_KEY, {
 });
 
 console.log(pics.all()); // Array of 10 landscape dog images
-\`\`\`
 
-### Real-world Next.js Example
 
-\`\`\`typescript
+### Next.js Example
+
+typescript
+
 // app/api/random-image/route.ts
 import { grabPic } from "grab-picture";
 
@@ -122,11 +104,12 @@ export async function GET() {
     return Response.json({ error: "Failed to fetch image" }, { status: 500 });
   }
 }
-\`\`\`
+
 
 ### Error Handling
 
-\`\`\`typescript
+typescript
+
 try {
   const pics = await grabPic("cats", YOUR_ACCESS_KEY);
   console.log(pics.all());
@@ -139,7 +122,7 @@ try {
     console.error("Failed to fetch images:", error.message);
   }
 }
-\`\`\`
+
 
 ## Getting Your Unsplash Access Key
 
@@ -150,23 +133,9 @@ try {
 
 ## Environment Variables
 
-\`\`\`bash
+
 # .env.local
 UNSPLASH_ACCESS_KEY=your_access_key_here
-\`\`\`
-
-## TypeScript Support
-
-This package is written in TypeScript and includes full type definitions:
-
-\`\`\`typescript
-import { grabPic, GrabPictureResult } from 'grab-picture';
-
-// Full type safety
-const result: GrabPictureResult = await grabPic("dogs", apiKey);
-const imageUrl: string = result.one();
-const allUrls: string[] = result.all();
-\`\`\`
 
 ## License
 
@@ -178,6 +147,4 @@ Pull requests are welcome! Please feel free to submit a Pull Request.
 
 ## Repository
 
-- **GitHub**: [https://github.com/GioGio2004/grab-picture](https://github.com/GioGio2004/grab-picture)
-- **Issues**: [https://github.com/GioGio2004/grab-picture/issues](https://github.com/GioGio2004/grab-picture/issues)
-- **Author**: Giorgi khvichia
+~ GitHub: [https://github.com/GioGio2004/grab-pic](https://github.com/GioGio2004/grab-pic)
