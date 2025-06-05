@@ -1,7 +1,7 @@
 {
   "name": "grab-picture",
   "version": "1.0.3",
-  "description": "",
+  "description": "grab your images in secconds",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
